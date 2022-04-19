@@ -1,0 +1,55 @@
+<%- include('../common/header.ejs') %>
+<style>
+  .container {
+    background-color: #eee;
+  }
+  .navbar {
+    background-color: #258354;
+  }
+  .nav-link {
+    color: #1aef84;
+  }
+  .nav-link:hover {
+    color: #eee;
+  }
+  .active {
+    color: #68a888;
+  }
+  @media (max-width:1000px){
+    .img-detail{
+      width:30%;
+      height:100%;
+    }
+  }
+</style>
+<%- include('../common/navbar.ejs') %>
+
+<main class="container mt-2 pb-3">
+  <h1><%= product.title %></h1>
+  <hr />
+  <div class="row">
+    <div class="col-md-5">
+      <img
+        class="img-detail"
+        src="<%=product.imageurl %>"
+        width="100%"
+        alt="<%=product.title %>"
+      />
+    </div>
+    <div class="pt-2 mt-1 col-md-7">
+      <h3><b>Price: </b>$ <%= product.price %></h3>
+      <p style="text-align: justify;"><b>Description: </b><%= product.description %></p>
+      <% if(logged){ %> 
+      <form action="/cart" method="post">
+        <input type="hidden" name="_csrf" value="<%= token %>">
+        <input type="hidden" name="id" value="<%= product.id %>" />
+        <input
+          class="btn btn-outline-dark"
+          type="submit"
+          value="Add to cart"
+        />
+      </form>
+    <% } %> 
+    </div>
+  </div>
+</main>

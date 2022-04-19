@@ -1,0 +1,32 @@
+body{
+    font-family: sans-serif;
+    background-color: #ebf197;
+}
+
+.navbar{
+    padding: 5px;
+    display: flex;
+    background-color: #d6e41c;
+}
+.item-list{
+    padding: 0 20px;
+    padding-top: 10px;
+    list-style: none;
+    display: flex;
+}
+.item-list li a{
+    padding: 0 10px;
+    text-decoration: none;
+    color: white;
+}
+a:hover,.active{
+    color: rgb(240, 159, 159);
+}
+
+.main{
+    /* background-color:rgb(231, 231, 173); */
+    border-radius: 5px;
+    background-color: rgb(209, 235, 116);
+    margin-top: 10px;
+    padding: 20px 15px;
+}

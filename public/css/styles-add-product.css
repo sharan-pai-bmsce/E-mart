@@ -1,0 +1,54 @@
+body {
+  font-family: sans-serif;
+  background-color: #ebf197;
+}
+
+.navbar {
+
+  padding: 0;
+  display: flex;
+  background-color: #d6e41c;
+}
+.item-list {
+  padding: 0 20px;
+  padding-top: 20px;
+  list-style: none;
+  display: flex;
+}
+.item-list li a {
+  padding: 0 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.active{
+  color: rgb(240, 159, 159)!important;
+}
+
+.item-list li a:hover,
+.item-list li a:active{
+  color: rgb(240, 159, 159);
+}
+.main {
+  border-radius: 5px;
+  background-color: rgb(209, 235, 116);
+  margin-top: 20px;
+  padding: 40px 15px;
+}
+.form-control {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.form-control label {
+  width: 20%;
+  padding-right: 10px;
+}
+.form-control input {
+  width: 80%;
+}
+
+.submit {
+  width: 100%;
+  
+}

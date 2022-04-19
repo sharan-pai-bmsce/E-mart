@@ -1,0 +1,64 @@
+<%- include('../common/header.ejs') %>
+<link rel="stylesheet" href="/css/styles-shop.css" />
+<%-include('../common/navbar.ejs') %>
+<div class="container">
+<% if (cart.length==0) { %>
+  <h2 class="text-center">No Products in the cart.</h2>
+  <% }else { let total = 0; cart.forEach(prod => { 
+    total+=prod.id.price*prod.quantity
+  }); %>
+  
+  <h2 style="text-align: right" class="pt-3 mb-3">
+    <b>Total Cost: </b>$ <%= total%>
+  </h2>
+  
+  <%
+  cart.forEach(prod => { %>
+  <div
+    class="mt-2 mb-2"
+    style="height: 150px; border: solid 5px; border-radius: 0.25rem"
+  >
+    <div class="row">
+      <div class="col-md-2">
+        <img
+          src="<%=prod.id.imageurl %>"
+          class="col-md-12"
+          style="height: 141px"
+          alt="<%=prod.title %>"
+        />
+      </div>
+      <div class="pt-2 mt-1 col-md-10">
+        <h2 class="text-center"><%=prod.id.title %></h2>
+        <div class="row col-md-12">
+          <div class="col-md-11">
+            <h3><b>Price: </b>$ <%= prod.id.price %></h3>
+            <h3><b>Quantity: </b><%= prod.quantity %></h3>
+          </div>
+          <div class="col-md-1">
+            <form
+              action="/delete-cart-item"
+              style="display: flex"
+              method="post"
+            >
+              <input type="hidden" name="_csrf" value='<%= token %>'>
+              <input type="hidden" name="id" value="<%= prod.id._id%>" />
+              <input type="submit" value="X" class="btn btn-danger" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+  <form action="/create-order" class="text-center mt-3" method="post">
+    <input type="hidden" name="_csrf" value="<%= token %>">
+    <input
+      name="order-now"
+      class="btn btn-dark"
+      style="width: 50%"
+      type="submit"
+      value="Order Now"
+    />
+  </form>
+  <% } %> <%-include('../common/footer.ejs') %>
+</div>

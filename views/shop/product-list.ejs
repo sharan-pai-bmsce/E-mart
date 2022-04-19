@@ -1,0 +1,64 @@
+<!--     
+    <%- %> is used to render the contents in the html markup type(text/html)
+    <%= %> is used to render html contents in the text type
+    <% %> is used to write the js content
+-->
+
+<%- include('../common/header.ejs'); %>
+
+<link rel="stylesheet" href="/css/styles-shop.css" />
+<%- include('../common/navbar.ejs') %>
+
+<main class="container main" style="text-align: center">
+  <h1>My Products</h1>
+  <main>
+    <% if(prod.length>0){ %>
+
+    <div class="row" style="margin: auto">
+      <% prod.forEach(prod=>{ %>
+
+      <div
+        class="card m-1"
+        style="
+          width: 18rem;
+          margin-left: 2% !important;
+          height: 500px;
+          background-color: #b2cff3;
+        "
+      >
+        <img
+          src="<%= prod.imageurl %>"
+          class="card-img-top"
+          style="height: 250px"
+        />
+        <div class="card-body">
+          <h5
+            class="card-title"
+            style="font-size: medium; text-decoration: underline"
+          >
+            <b><%= prod.title %></b>
+          </h5>
+          <p class="card-text" style="text-align: justify">
+            <%- prod.description.substring(0,50); %> ...
+          </p>
+          <h2>$ <%= JSON.parse(prod.price).toLocaleString('eg-IN') %></h2>
+          <a href="/products/<%= prod._id %>">Details</a>
+          <% if(logged){ %>
+          <form action="/cart" method="post">
+            <input type="hidden" name="_csrf" value="<%= token %>">
+            <input type="hidden" name="id" value="<%= prod._id %>" />
+            <button type="submit" class="btn btn-dark btn-block">
+              Add to Cart
+            </button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+    <% }else{ %>
+    <h1>No Products Found!!</h1>
+    <% } %>
+  </main>
+</main>
+<%- include('../common/footer.ejs') %>

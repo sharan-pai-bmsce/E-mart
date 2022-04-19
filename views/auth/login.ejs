@@ -1,0 +1,67 @@
+<%- include('../common/header'); %>
+<link rel="stylesheet" href="/css/styles-shop.css" />
+<%- include('../common/navbar') %>
+<style>
+  .login-form {
+    background-color: rgb(209, 235, 116);
+    margin-top: 150px;
+    padding: 20px;
+    border-radius: 0.45rem;
+  }
+</style>
+<div class="container">
+  <form action="/login" method="post">
+    <div class="form-group col-md-6" style="margin: auto">
+      <div class="login-form">
+        <div class="mb-3">
+          <h1
+            class="text-center"
+            style="
+              color: #124670;
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            "
+          >
+            E-MART
+          </h1>
+          <% if(error.length !== 0){ %>
+          <div class="alert-danger alert text-center"><%= error %></div>
+          <% }else if(success.length !== 0){ %>
+          <div class="alert-success alert text-center"><%= success %></div>
+          <% } %>
+          <label for="email" class="ps-2 form-label">Email address</label>
+          <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="Password" class="ps-2 form-label">Password</label>
+          <input
+            name="password"
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <input type="hidden" name="_csrf" value="<%= token %>" />
+        <div class="mb-3 text-center">
+          <a href="/reset-password" class="mb-3 text-center">Forgot Password</a>
+        </div>
+        <div class="mb-3 text-center">
+          <input
+            type="submit"
+            name="submit"
+            value="Login"
+            class="btn btn-outline-dark"
+            style="width: 50%"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<%- include('../common/footer') %>

@@ -1,0 +1,79 @@
+<%- include('../common/header.ejs') %>
+<link rel="stylesheet" href="/css/styles-add-product.css" />
+
+<%- include('../common/navbar.ejs') %>
+
+<main class="container main">
+  <form
+    class="product-form"
+    action="/admin/<% if(!editing){%>add-product<%}else{ %>edit-product<%}%>"
+    method="post"
+  >
+  <input type="hidden" name="_csrf" value="<%= token %>">
+    <% if(editing){%>
+        <input type="hidden" name="id" value='<%= prod._id%>'>
+        <% } %> 
+      <div class="form-group">
+      <label class="form-label" for="title">Title:</label>
+      <input
+        type="text"
+        class="form-control" 
+        name="title"
+        id="title"
+        value="<% if(editing){%><%=prod.title%><%} %>"
+      />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="title">Image url:</label>
+      <input
+        type="text"
+        class="form-control"
+        name="imageurl"
+        id="img-url"
+        value="<% if(editing){%><%=prod.imageurl%><%} %>"
+      />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="title">Description:</label>
+      <textarea
+        name="description"
+        style="height: 150px"
+        id="description"
+        class="form-control"
+      >
+<% if(editing){%><%=prod.description%><%} %></textarea
+      >
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="title">Price:</label>
+      <input
+        type="number"
+        class="form-control"
+        name="price"
+        id="title"
+        step="0.01"
+        value="<% if(editing){%><%=prod.price%><%} %>"
+      />
+    </div>
+    <% if(!editing){%>
+    <div class="text-center">
+      <input
+        style="width: 50%"
+        class="btn btn-outline-dark submit"
+        type="submit"
+        value="Add Product"
+      />
+    </div>
+    <%}else{ %>
+    <div class="text-center">
+      <input
+        style="width: 50%"
+        class="btn btn-dark submit"
+        type="submit"
+        value="Update Product"
+      />
+    </div>
+    <% } %>
+  </form>
+</main>
+<%- include('../common/footer.ejs') %>

@@ -1,0 +1,22 @@
+<%- include('../common/header.ejs') %>
+<link rel="stylesheet" href="/css/styles-shop.css" />
+<%-include('../common/navbar.ejs') %>
+<div class="container">
+    <% if (orders.length==0) { %>
+     <h1>No Orders Yet!!!</h1>
+    <% }else { %>
+            <% orders.forEach(order => { %>
+                <b class="me-3">Order No.: <%= order._id %></b><b class="ms-3">User: <%= order.user.name %></b>
+                <ul class="list-group">
+                    <% order.items.forEach(item => { %>
+                        <li class="list-group-item list-group-item-warning mt-3 mb-3">
+                            <%= item.product.title %> (<%= item.quantity %>) <%= item.product.price %> 
+                        </li>
+                    <% }) %>
+                </ul>
+             </li>
+            <% }) %>
+        <% } %> 
+</div>
+
+<%-include('../common/footer.ejs') %>
